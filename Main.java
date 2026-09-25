@@ -1,20 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        Vehicle vehicle1 = new Vehicle();
-        vehicle1.brand = "Toyota";
-        vehicle1.model = "Camry";
-        vehicle1.year = 2020;
-
-        Vehicle vehicle2 = new Vehicle();
-        vehicle2.brand = "Honda";
-        vehicle2.model = "Civic";
-        vehicle2.year = 1995;
-
-        Vehicle vehicle3 = new Vehicle();
-        vehicle3.brand = "Ford";
-        vehicle3.model = "Mustang";
-        vehicle3.year = 2010;
+        Vehicle vehicle1 = new Vehicle("Toyota", "Camry", 2020);
+        Vehicle vehicle2 = new Vehicle("Honda", "Civic", 1995);
+        Vehicle vehicle3 = new Vehicle("Ford", "Mustang", 2010);
 
         vehicle1.displayInfo();
         System.out.println("Age: " + vehicle1.calculateAge());
