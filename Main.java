@@ -1,63 +1,97 @@
-public class Main {
 
+public class Main {
     public static void printDetails(Vehicle vehicle) {
         vehicle.displayInfo();
     }
+
+    public static void performService(Serviceable item) {
+        item.Service();
+    }
+
     public static void main(String[] args) {
+
         // DEMO 1: A parent reference can refer to a child object.
         System.out.println("=== 1. Parent Reference ===");
-        Vehicle vehicle = new Car ("Ford", "Mustang", 2020, 2);
+
+        Vehicle vehicle = new Car("Ford", "Mustang", 1967, 4);
         vehicle.displayInfo();
         vehicle.moveForward();
         vehicle.moveBackward();
         vehicle.moveLeft();
         vehicle.moveRight();
+        performService((Serviceable) vehicle);
         System.out.println();
 
-        // The Same Variable now Refer to a Motorcycle Object.
-        vehicle = new Motorcycle("Harley-Davidson", "Street 750", 2019, "V-Twin");
+        // The same variable now refers to a Motorcycle object.
+        vehicle = new Motorcycle("Honda", "Click 125i", 2023, "125cc Single-Cylinder");
         vehicle.displayInfo();
         vehicle.moveForward();
         vehicle.moveBackward();
         vehicle.moveLeft();
         vehicle.moveRight();
+        performService((Serviceable) vehicle);
+        System.out.println();
 
-        // DEMO 2: One Method accepts different Vehicle subclasses
-        System.out.println("\n === 2. Method Parameter ===");
-        Car car = new Car ("Toyota", "Camry", 2021, 4);
-        Motorcycle motorcycle = new Motorcycle("Ducati", "Panigale V4", 2022, "V4");
-        Truck truck = new Truck("Volvo", "FH16", 2020, 18);
+        // DEMO 2: One method accepts different Vehicle subclasses.
+        System.out.println("\n=== 2. Method Parameter ===");
+
+        Car car = new Car("Mitsubishi", "Mirage G4", 2021, 4);
+        Motorcycle motorcycle = new Motorcycle("Yamaha", "NMAX 155", 2024, "155cc Single-Cylinder");
+        Truck truck = new Truck("Isuzu", "Elf", 2020, 6);
+
         printDetails(car);
         car.moveForward();
         car.moveBackward();
         car.moveLeft();
         car.moveRight();
+        performService((Serviceable) car);
+        System.out.println();
         printDetails(motorcycle);
         motorcycle.moveForward();
         motorcycle.moveBackward();
         motorcycle.moveLeft();
         motorcycle.moveRight();
+        performService((Serviceable) motorcycle);
+        System.out.println();
         printDetails(truck);
         truck.moveForward();
         truck.moveBackward();
         truck.moveLeft();
         truck.moveRight();
+        performService((Serviceable) truck);
+        System.out.print("");
 
-        // DEMO 3: One array holds different Vehicle subclasses
-        System.out.println("\n === 3. Polymorphic Array ===");
+        // DEMO 3: One array holds different Vehicle subclasses.
+        System.out.println("\n=== 3. Polymorphic Array ===");
+
         Vehicle[] vehicles = {
-            new Car("Honda", "Civic", 2018, 4),
-            new Motorcycle("Yamaha", "MT-07", 2020, "Parallel Twin"),
-            new Truck("Ford", "F-150", 2019, 4)
+                new Car("Honda", "City", 2022, 4),
+                new Motorcycle("Honda", "TMX 125", 2021, "125cc Single-Cylinder"),
+                new Truck("Mitsubishi", "Canter", 2020, 6)
         };
 
-    for(Vehicle currentVehicle: vehicles){
-        printDetails(currentVehicle);
-        currentVehicle.moveForward();
-        currentVehicle.moveBackward();
-        currentVehicle.moveLeft();
-        currentVehicle.moveRight();
-        System.out.println();
+        Serviceable[] serviceables = {
+                new Car("Honda", "City", 2022, 4),
+                new Motorcycle("Honda", "TMX 125", 2021, "125cc Single-Cylinder"),
+                new Truck("Mitsubishi", "Canter", 2020, 6),
+                new Printer()
+        };
+
+        for (Vehicle currentVehicle : vehicles) {
+            printDetails(currentVehicle);
+            currentVehicle.moveForward();
+            currentVehicle.moveBackward();
+            currentVehicle.moveLeft();
+            currentVehicle.moveRight();
+            performService((Serviceable) currentVehicle);
+            System.out.println();
+        }
+
+        System.out.println("=== Serviceable Items ===" + "\n");
+
+        for (Serviceable currentServiceable : serviceables) {
+            performService(currentServiceable);
+            System.out.println();
+        }
     }
-}
 }
